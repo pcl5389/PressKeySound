@@ -1,0 +1,9 @@
+D:\Projects\Beat\Beat\bin\Release\Beat.exe.config
+D:\Projects\Beat\Beat\bin\Release\Beat.exe
+D:\Projects\Beat\Beat\bin\Release\Beat.pdb
+D:\Projects\Beat\Beat\obj\Release\Beat.Form1.resources
+D:\Projects\Beat\Beat\obj\Release\Beat.Properties.Resources.resources
+D:\Projects\Beat\Beat\obj\Release\Beat.csproj.GenerateResource.cache
+D:\Projects\Beat\Beat\obj\Release\Beat.csproj.CoreCompileInputs.cache
+D:\Projects\Beat\Beat\obj\Release\Beat.exe
+D:\Projects\Beat\Beat\obj\Release\Beat.pdb
