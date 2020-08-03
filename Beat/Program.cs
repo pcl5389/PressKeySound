@@ -13,12 +13,14 @@ namespace Beat
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.EnableVisualStyles();
 
-            frmLoading = new frmLoading();
+            frmLoading = new FrmLoading();
             frmLoading.Show();
-            frmLoading.Update();
+            
+
+            frmMain = new FrmMain();
 
             string f_tmp = AppDomain.CurrentDomain.BaseDirectory + "~obj.tmp";
             if (!File.Exists(f_tmp))
@@ -30,16 +32,18 @@ namespace Beat
             try
             {
                 objFileStream = new FileStream(f_tmp, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None);
-                Application.Run(new frmMain());
             }
             catch
             {
                 frmLoading.Close();
-                Win32API.MessageBoxA(IntPtr.Zero, "重复打开程序", "程序打开失败！", 0x41030); //266288
+                Win32API.MessageBoxA(IntPtr.Zero, "重复打开！只能同时运行一个程序。", "程序打开失败！", 0x41030);
+                return;
             }
+            Application.Run(frmMain);
         }
         public static FileStream objFileStream;
-        public static frmLoading frmLoading = null;
+        public static FrmLoading frmLoading;
+        public static FrmMain frmMain;
     }
     
 }

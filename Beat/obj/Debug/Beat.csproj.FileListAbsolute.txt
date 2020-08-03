@@ -1,11 +1,7 @@
 D:\Projects\Beat\Beat\bin\Debug\Beat.exe
 D:\Projects\Beat\Beat\bin\Debug\Beat.pdb
-D:\Projects\Beat\Beat\obj\Debug\Beat.Properties.Resources.resources
 D:\Projects\Beat\Beat\obj\Debug\Beat.csproj.GenerateResource.cache
 D:\Projects\Beat\Beat\obj\Debug\Beat.csproj.CoreCompileInputs.cache
 D:\Projects\Beat\Beat\obj\Debug\Beat.exe
 D:\Projects\Beat\Beat\obj\Debug\Beat.pdb
-D:\Projects\Beat\Beat\bin\Debug\Beat.exe.config
-D:\Projects\Beat\Beat\obj\Debug\Beat.frmLoading.resources
 D:\Projects\Beat\Beat\obj\Debug\Beat.frmMain.resources
-D:\Projects\Beat\Beat\obj\Debug\Beat.csprojAssemblyReference.cache

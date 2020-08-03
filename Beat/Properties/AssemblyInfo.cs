@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Beat")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("按键播放声音")]
+[assembly: AssemblyDescription("自定义按键、自定义播放声音")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("山东君泰信息技术有限公司")]
 [assembly: AssemblyProduct("Beat")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]

@@ -1,16 +1,22 @@
-﻿using Beat.lib;
+﻿//#define LOGS
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using Beat.lib;
 
 namespace Beat
 {
-    public partial class frmMain : Form
+    public partial class FrmMain : Form
     {
-        public frmMain()
+        public FrmMain()
         {
+            DoubleBuffered = true;//设置本窗体
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true); // 双缓冲
+
             InitializeComponent();
         }
 
@@ -40,7 +46,7 @@ namespace Beat
             }
             SaveConfig();
             AutoRegHotKey();
-            button1.Enabled = false;
+            btnApply.Enabled = false;
         }
 
         public void play_sound(string wav_path)
@@ -63,27 +69,27 @@ namespace Beat
             {
                 HotKeys.UnRegHotKey(Handle, id);
             }
-            if (!string.IsNullOrEmpty(tbWavPath1.Text) && RegHotKey(0x80F1, tbHotKey1.Text))
+            if (!string.IsNullOrEmpty(tbHotKey1.Text) && !string.IsNullOrEmpty(tbWavPath1.Text) && RegHotKey(0x80F1, tbHotKey1.Text))
             {
                 HotKeyIds.Add(0x80F1);
             }
-            if (!string.IsNullOrEmpty(tbWavPath2.Text) && RegHotKey(0x80F2, tbHotKey2.Text))
+            if (!string.IsNullOrEmpty(tbHotKey2.Text) && !string.IsNullOrEmpty(tbWavPath2.Text) && RegHotKey(0x80F2, tbHotKey2.Text))
             {
                 HotKeyIds.Add(0x80F2);
             }
-            if (!string.IsNullOrEmpty(tbWavPath3.Text) && RegHotKey(0x80F3, tbHotKey3.Text))
+            if (!string.IsNullOrEmpty(tbHotKey3.Text) && !string.IsNullOrEmpty(tbWavPath3.Text) && RegHotKey(0x80F3, tbHotKey3.Text))
             {
                 HotKeyIds.Add(0x80F3);
             }
-            if (!string.IsNullOrEmpty(tbWavPath4.Text) && RegHotKey(0x80F4, tbHotKey4.Text))
+            if (!string.IsNullOrEmpty(tbHotKey4.Text) && !string.IsNullOrEmpty(tbWavPath4.Text) && RegHotKey(0x80F4, tbHotKey4.Text))
             {
                 HotKeyIds.Add(0x80F4);
             }
-            if (!string.IsNullOrEmpty(tbWavPath5.Text) && RegHotKey(0x80F5, tbHotKey5.Text))
+            if (!string.IsNullOrEmpty(tbHotKey5.Text) && !string.IsNullOrEmpty(tbWavPath5.Text) && RegHotKey(0x80F5, tbHotKey5.Text))
             {
                 HotKeyIds.Add(0x80F5);
             }
-            if (!string.IsNullOrEmpty(tbWavPath6.Text) && RegHotKey(0x80F6, tbHotKey6.Text))
+            if (!string.IsNullOrEmpty(tbHotKey6.Text) && !string.IsNullOrEmpty(tbWavPath6.Text) && RegHotKey(0x80F6, tbHotKey6.Text))
             {
                 HotKeyIds.Add(0x80F6);
             }
@@ -94,7 +100,7 @@ namespace Beat
             //热键一
             if (Str2HotKey(strHotKey, out HotKeys.KeyModifiers hotKeyModify, out Keys hotKey))
             {
-                return HotKeys.RegHotKey(Handle, key_id, hotKeyModify, hotKey);
+                return HotKeys.RegHotKey(Handle, key_id, hotKeyModify, hotKey, strHotKey);
             }
             else
             {
@@ -102,12 +108,14 @@ namespace Beat
             }
             return false;
         }
+        bool bActived = true;
         private const int WM_HOTKEY = 0x312; //窗口消息：热键
         protected override void WndProc(ref Message msg)
         {
             if (msg.Msg.Equals(WM_HOTKEY))
             {
-                switch (msg.WParam.ToInt32())
+                int iEventID = msg.WParam.ToInt32();
+                switch (iEventID)
                 {
                     case 0x80F1:
                         play_sound(Path.Combine(Application.StartupPath, tbWavPath1.Text));
@@ -127,10 +135,58 @@ namespace Beat
                     case 0x80F6:
                         play_sound(Path.Combine(Application.StartupPath, tbWavPath6.Text));
                         break;
+                    default:
+                        return;
+                }
+                if (bActived)
+                {
+                    SetHotKey(iEventID);
                 }
             }
             else
                 base.WndProc(ref msg);
+        }
+
+        private void SetHotKey(int EventID)
+        {
+            if (ActiveControl is TextBox tb && GetHotKey(EventID) is string KeyText && !string.IsNullOrEmpty(KeyText))
+            {
+                switch (tb.Name)
+                {
+                    case "tbHotKey1":
+                        tbHotKey1.Text = KeyText; return;
+                    case "tbHotKey2":
+                        tbHotKey2.Text = KeyText; return;
+                    case "tbHotKey3":
+                        tbHotKey3.Text = KeyText; return;
+                    case "tbHotKey4":
+                        tbHotKey4.Text = KeyText; return;
+                    case "tbHotKey5":
+                        tbHotKey5.Text = KeyText; return;
+                    case "tbHotKey6":
+                        tbHotKey6.Text = KeyText; return;
+                }
+            }
+        }
+
+        private string GetHotKey(int EventID)
+        {
+            switch (EventID)
+            {
+                case 0x80F1:
+                    return tbHotKey1.Tag.ToString();
+                case 0x80F2:
+                    return tbHotKey2.Tag.ToString();
+                case 0x80F3:
+                    return tbHotKey3.Tag.ToString();
+                case 0x80F4:
+                    return tbHotKey4.Tag.ToString();
+                case 0x80F5:
+                    return tbHotKey5.Tag.ToString();
+                case 0x80F6:
+                    return tbHotKey6.Tag.ToString();
+            }
+            return string.Empty;
         }
 
         public bool Str2HotKey(string hotKey, out HotKeys.KeyModifiers hotKeyModify, out Keys HotKey)
@@ -197,7 +253,6 @@ namespace Beat
                 key = key + "Shift + ";
                 k = k & ~Keys.Shift;
             }
-            
 
             if (k != Keys.None && k != Keys.ControlKey && k != Keys.ShiftKey)
                 key = key + k.ToString();
@@ -213,7 +268,7 @@ namespace Beat
             }
             e.Handled = true;
         }
-        private void InitConfig()
+        private bool InitConfig()
         {
             if (File.Exists(Application.StartupPath + "/config.ini"))
             {
@@ -235,6 +290,8 @@ namespace Beat
 
                 tbHotKey6.Tag = tbHotKey6.Text = ini.IniReadValue("热键六", "HotKey6");
                 tbWavPath6.Tag = tbWavPath6.Text = ini.IniReadValue("热键六", "WavPath6");
+
+                return btnReset.Enabled = true;
             }
             else
             {
@@ -255,18 +312,36 @@ namespace Beat
 
                 tbHotKey6.Tag = tbHotKey6.Text = "";
                 tbWavPath6.Tag = tbWavPath6.Text = "";
+
+                return btnReset.Enabled = false;
             }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            InitConfig();
-            AutoRegHotKey();
-            button1.Enabled = false;
-            if (!File.Exists(Application.StartupPath + "/config.ini"))
+            if (!InitConfig())
             {
-                button3.Enabled = false;
+                SaveConfig();
                 background_compile();
             }
+            AutoRegHotKey();
+            //关联事件
+            tbHotKey1.TextChanged += new EventHandler(tbConfig_TextChanged);
+            tbWavPath1.TextChanged += new EventHandler(tbConfig_TextChanged);
+            
+            tbHotKey2.TextChanged += new EventHandler(tbConfig_TextChanged);
+            tbWavPath2.TextChanged += new EventHandler(tbConfig_TextChanged);
+
+            tbHotKey3.TextChanged += new EventHandler(tbConfig_TextChanged);
+            tbWavPath3.TextChanged += new EventHandler(tbConfig_TextChanged);
+
+            tbWavPath4.TextChanged += new EventHandler(tbConfig_TextChanged);
+            tbHotKey4.TextChanged += new EventHandler(tbConfig_TextChanged);
+            
+            tbWavPath5.TextChanged += new EventHandler(tbConfig_TextChanged);
+            tbHotKey5.TextChanged += new EventHandler(tbConfig_TextChanged);
+
+            tbWavPath6.TextChanged += new EventHandler(tbConfig_TextChanged);
+            tbHotKey6.TextChanged += new EventHandler(tbConfig_TextChanged);
         }
 
         private void SaveConfig()
@@ -289,8 +364,6 @@ namespace Beat
 
             ini.IniWriteValue("热键六", "HotKey6", (tbHotKey6.Tag = tbHotKey6.Text).ToString());
             ini.IniWriteValue("热键六", "WavPath6", (tbWavPath6.Tag = tbWavPath6.Text).ToString());
-
-            button3.Enabled = true;
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -337,13 +410,13 @@ namespace Beat
                 }
             }
         }
-        private void tbWavPath1_TextChanged(object sender, EventArgs e)
+        private void tbConfig_TextChanged(object sender, EventArgs e)
         {
-            if (!button1.Enabled)
-                button1.Enabled = true;
+            if (!btnApply.Enabled)
+                btnApply.Enabled = true;
             else
             {
-                button1.Enabled = !((tbHotKey1.Tag == null ? string.IsNullOrEmpty(tbHotKey1.Text) : tbHotKey1.Tag.Equals(tbHotKey1.Text))
+                btnApply.Enabled = !((tbHotKey1.Tag == null ? string.IsNullOrEmpty(tbHotKey1.Text) : tbHotKey1.Tag.Equals(tbHotKey1.Text))
                     && (tbWavPath1.Tag == null ? string.IsNullOrEmpty(tbWavPath1.Text) : tbWavPath1.Tag.Equals(tbWavPath1.Text))
                     && (tbHotKey2.Tag == null ? string.IsNullOrEmpty(tbHotKey2.Text) : tbHotKey2.Tag.Equals(tbHotKey2.Text))
                     && (tbWavPath2.Tag == null ? string.IsNullOrEmpty(tbWavPath2.Text) : tbWavPath2.Tag.Equals(tbWavPath2.Text))
@@ -364,27 +437,32 @@ namespace Beat
                 if (MessageBox.Show("将删除您全部的按键发声设置！", " 重置警告!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     File.Delete(Application.StartupPath + "/config.ini");
-                    Form1_Load(null, null);
+                    InitConfig();
+                    SaveConfig();
+                    AutoRegHotKey();
+                    btnApply.Enabled = false;
                 }
             }
             else
             {
-                button3.Enabled = false;
+                btnReset.Enabled = false;
             }
         }
         private void frmMain_Shown(object sender, EventArgs e)
         {
             Program.frmLoading.Close();
         }
+        /*
         protected override CreateParams CreateParams
         {
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;
+                cp.ExStyle = cp.ExStyle|0x02000000;
                 return cp;
             }
         }
+        */
         private void background_compile()
         {
             System.Threading.Tasks.Task t = new System.Threading.Tasks.Task(() =>
@@ -395,5 +473,30 @@ namespace Beat
             });
             t.Start();
         }
+
+        private void frmMain_Activated(object sender, EventArgs e)
+        {
+#if LOGS
+            logs("<<Active");
+#endif
+            bActived = true;
+        }
+
+#if LOGS
+        private void logs(object obj)
+        {
+            StreamWriter sw = new StreamWriter(Application.StartupPath + "/log.txt", true);
+            sw.WriteLine(obj.ToString());
+            sw.Close();
+        }
+#endif
+        private void frmMain_Deactivate(object sender, EventArgs e)
+        {
+#if LOGS
+            logs(">>Deactivate");
+#endif
+            bActived = false;
+        }
+
     }
 }

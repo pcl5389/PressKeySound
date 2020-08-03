@@ -1,6 +1,6 @@
 ﻿namespace Beat
 {
-    partial class frmLoading
+    partial class FrmLoading
     {
         /// <summary>
         /// Required designer variable.

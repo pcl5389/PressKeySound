@@ -2,20 +2,11 @@
 
 namespace Beat
 {
-    public partial class frmLoading : Form
+    public partial class FrmLoading : Form
     {
-        public frmLoading()
+        public FrmLoading()
         {
             InitializeComponent();
-        }
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;
-                return cp;
-            }
         }
     }
 }

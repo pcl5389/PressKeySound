@@ -41,18 +41,18 @@ namespace Beat
         /// <param name="hotKey_id">热键ID</param>
         /// <param name="keyModifiers">组合键</param>
         /// <param name="key">热键</param>
-        public static bool RegHotKey(IntPtr hwnd, int hotKeyId, KeyModifiers keyModifiers, Keys key)
+        public static bool RegHotKey(IntPtr hwnd, int hotKeyId, KeyModifiers keyModifiers, Keys key, string strHotKeys="")
         {
             if (!RegisterHotKey(hwnd, hotKeyId, keyModifiers, key))
             {
                 int errorCode = Marshal.GetLastWin32Error();
                 if (errorCode == 1409)
                 {
-                    MessageBox.Show("热键被占用 ！");
+                    MessageBox.Show(string.Format("热键{0}已被占用，请更换 ！", string.IsNullOrEmpty(strHotKeys) ? "" : ("<" + strHotKeys + ">")));
                 }
                 else
                 {
-                    MessageBox.Show("注册热键失败！错误代码：" + errorCode);
+                    MessageBox.Show(string.Format("注册热键{0}失败！错误代码：{1}", string.IsNullOrEmpty(strHotKeys) ? "" : ("<" + strHotKeys + ">"), errorCode));
                 }
                 return false;
             }
