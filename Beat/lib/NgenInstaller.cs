@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace Beat.lib
 {
     [RunInstaller(true)]
-    public partial class NgenInstaller// : System.Configuration.Install.Installer
+    class NgenInstaller// : System.Configuration.Install.Installer
     {
         public enum InstallTypes
         {

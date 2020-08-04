@@ -46,7 +46,9 @@ namespace Beat
             }
             SaveConfig();
             AutoRegHotKey();
-            btnApply.Enabled = false;
+            btnCancel.Enabled = btnApply.Enabled = false;
+            btnReset.Enabled = true;
+            HotKeyGetFocus();
         }
 
         public void play_sound(string wav_path)
@@ -98,7 +100,7 @@ namespace Beat
         public bool RegHotKey(int key_id = 0x80F0, string strHotKey = "Ctrl + F1")
         {
             //热键一
-            if (Str2HotKey(strHotKey, out HotKeys.KeyModifiers hotKeyModify, out Keys hotKey))
+            if (Str2HotKey(strHotKey, out Win32API.KeyModifiers hotKeyModify, out Keys hotKey))
             {
                 return HotKeys.RegHotKey(Handle, key_id, hotKeyModify, hotKey, strHotKey);
             }
@@ -189,21 +191,21 @@ namespace Beat
             return string.Empty;
         }
 
-        public bool Str2HotKey(string hotKey, out HotKeys.KeyModifiers hotKeyModify, out Keys HotKey)
+        bool Str2HotKey(string hotKey, out Win32API.KeyModifiers hotKeyModify, out Keys HotKey)
         {
-            hotKeyModify = HotKeys.KeyModifiers.None;
+            hotKeyModify = Win32API.KeyModifiers.None;
             HotKey = Keys.F4;
 
             if (hotKey != null)
             {
                 if (hotKey.Contains("Ctrl"))
-                    hotKeyModify = hotKeyModify | HotKeys.KeyModifiers.Ctrl;
+                    hotKeyModify = hotKeyModify | Win32API.KeyModifiers.Ctrl;
                 if (hotKey.Contains("Alt"))
-                    hotKeyModify = hotKeyModify | HotKeys.KeyModifiers.Alt;
+                    hotKeyModify = hotKeyModify | Win32API.KeyModifiers.Alt;
                 if (hotKey.Contains("Shift"))
-                    hotKeyModify = hotKeyModify | HotKeys.KeyModifiers.Shift;
+                    hotKeyModify = hotKeyModify | Win32API.KeyModifiers.Shift;
                 if (hotKey.Contains("Win"))
-                    hotKeyModify = hotKeyModify | HotKeys.KeyModifiers.WindowsKey;
+                    hotKeyModify = hotKeyModify | Win32API.KeyModifiers.WindowsKey;
 
                 try
                 {
@@ -413,17 +415,19 @@ namespace Beat
         private void tbConfig_TextChanged(object sender, EventArgs e)
         {
             if (!btnApply.Enabled)
-                btnApply.Enabled = true;
+            {
+                btnCancel.Enabled = btnApply.Enabled = true;
+            }
             else
             {
-                btnApply.Enabled = !((tbHotKey1.Tag == null ? string.IsNullOrEmpty(tbHotKey1.Text) : tbHotKey1.Tag.Equals(tbHotKey1.Text))
+                btnCancel.Enabled = btnApply.Enabled = !((tbHotKey1.Tag == null ? string.IsNullOrEmpty(tbHotKey1.Text) : tbHotKey1.Tag.Equals(tbHotKey1.Text))
                     && (tbWavPath1.Tag == null ? string.IsNullOrEmpty(tbWavPath1.Text) : tbWavPath1.Tag.Equals(tbWavPath1.Text))
                     && (tbHotKey2.Tag == null ? string.IsNullOrEmpty(tbHotKey2.Text) : tbHotKey2.Tag.Equals(tbHotKey2.Text))
                     && (tbWavPath2.Tag == null ? string.IsNullOrEmpty(tbWavPath2.Text) : tbWavPath2.Tag.Equals(tbWavPath2.Text))
                     && (tbHotKey3.Tag == null ? string.IsNullOrEmpty(tbHotKey3.Text) : tbHotKey3.Tag.Equals(tbHotKey3.Text))
                     && (tbWavPath3.Tag == null ? string.IsNullOrEmpty(tbWavPath3.Text) : tbWavPath3.Tag.Equals(tbWavPath3.Text))
                     && (tbHotKey4.Tag == null ? string.IsNullOrEmpty(tbHotKey4.Text) : tbHotKey4.Tag.Equals(tbHotKey4.Text))
-                    && (tbWavPath4.Tag == null ? string.IsNullOrEmpty(tbWavPath4.Text) : tbWavPath1.Tag.Equals(tbWavPath4.Text))
+                    && (tbWavPath4.Tag == null ? string.IsNullOrEmpty(tbWavPath4.Text) : tbWavPath4.Tag.Equals(tbWavPath4.Text))
                     && (tbHotKey5.Tag == null ? string.IsNullOrEmpty(tbHotKey5.Text) : tbHotKey5.Tag.Equals(tbHotKey5.Text))
                     && (tbWavPath5.Tag == null ? string.IsNullOrEmpty(tbWavPath5.Text) : tbWavPath5.Tag.Equals(tbWavPath5.Text))
                     && (tbHotKey6.Tag == null ? string.IsNullOrEmpty(tbHotKey6.Text) : tbHotKey6.Tag.Equals(tbHotKey6.Text))
@@ -440,19 +444,21 @@ namespace Beat
                     InitConfig();
                     SaveConfig();
                     AutoRegHotKey();
-                    btnApply.Enabled = false;
+                    btnReset.Enabled = btnCancel.Enabled = btnApply.Enabled = false;
+                    HotKeyGetFocus();
                 }
             }
             else
             {
                 btnReset.Enabled = false;
+                HotKeyGetFocus();
             }
+            
         }
         private void frmMain_Shown(object sender, EventArgs e)
         {
             Program.frmLoading.Close();
         }
-        /*
         protected override CreateParams CreateParams
         {
             get
@@ -462,7 +468,6 @@ namespace Beat
                 return cp;
             }
         }
-        */
         private void background_compile()
         {
             System.Threading.Tasks.Task t = new System.Threading.Tasks.Task(() =>
@@ -497,6 +502,45 @@ namespace Beat
 #endif
             bActived = false;
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            tbHotKey1.Text = tbHotKey1.Tag.ToString();
+            tbWavPath1.Text = tbWavPath1.Tag.ToString();
+
+            tbHotKey2.Text = tbHotKey2.Tag.ToString();
+            tbWavPath2.Text = tbWavPath2.Tag.ToString();
+
+            tbHotKey3.Text = tbHotKey3.Tag.ToString();
+            tbWavPath3.Text = tbWavPath3.Tag.ToString();
+
+            tbHotKey4.Text = tbHotKey4.Tag.ToString();
+            tbWavPath4.Text = tbWavPath4.Tag.ToString();
+
+            tbHotKey5.Text = tbHotKey5.Tag.ToString();
+            tbWavPath5.Text = tbWavPath5.Tag.ToString();
+
+            tbHotKey6.Text = tbHotKey6.Tag.ToString();
+            tbWavPath6.Text = tbWavPath6.Tag.ToString();
+
+            HotKeyGetFocus();
+        }
+        public void HotKeyGetFocus()
+        {
+            if (string.IsNullOrEmpty(tbHotKey1.Text))
+                tbHotKey1.Focus();
+            else if (string.IsNullOrEmpty(tbHotKey2.Text))
+                tbHotKey2.Focus();
+            else if (string.IsNullOrEmpty(tbHotKey3.Text))
+                tbHotKey3.Focus();
+            else if (string.IsNullOrEmpty(tbHotKey4.Text))
+                tbHotKey4.Focus();
+            else if (string.IsNullOrEmpty(tbHotKey5.Text))
+                tbHotKey5.Focus();
+            else
+                tbHotKey6.Focus();
+        }
+
 
     }
 }

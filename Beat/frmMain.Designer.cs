@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.btnApply = new System.Windows.Forms.Button();
             this.tbHotKey1 = new System.Windows.Forms.TextBox();
             this.tbWavPath1 = new System.Windows.Forms.TextBox();
@@ -46,6 +45,7 @@
             this.tbHotKey5 = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnApply
@@ -254,12 +254,25 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.button3_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.AutoSize = true;
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Location = new System.Drawing.Point(334, 225);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(60, 25);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "撤销";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // FrmMain
             // 
             this.AcceptButton = this.btnApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 257);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.tbWavPath6);
@@ -278,7 +291,6 @@
             this.Controls.Add(this.tbHotKey1);
             this.Controls.Add(this.btnApply);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMain";
@@ -315,6 +327,7 @@
         private System.Windows.Forms.TextBox tbHotKey5;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 
