@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace Beat.lib
 {
@@ -13,18 +12,18 @@ namespace Beat.lib
         /// <param name="hotKey_id">热键ID</param>
         /// <param name="keyModifiers">组合键</param>
         /// <param name="key">热键</param>
-        public static bool RegHotKey(IntPtr hwnd, int hotKeyId, Win32API.KeyModifiers keyModifiers, Keys key, string strHotKeys="")
+        public static bool RegHotKey(IntPtr hwnd, int hotKeyId, Win32API.KeyModifiers keyModifiers, System.Windows.Forms.Keys key, string strHotKeys="")
         {
             if (!Win32API.RegisterHotKey(hwnd, hotKeyId, keyModifiers, key))
             {
                 int errorCode = Marshal.GetLastWin32Error();
                 if (errorCode == 1409)
                 {
-                    MessageBox.Show(string.Format("热键{0}已被占用，请更换 ！", string.IsNullOrEmpty(strHotKeys) ? "" : ("<" + strHotKeys + ">")));
+                    Win32API.MessageBoxA(IntPtr.Zero, string.Format("热键{0}已被占用，请更换 ！", string.IsNullOrEmpty(strHotKeys) ? "" : ("<" + strHotKeys + ">")), "热键冲突！", 0x41030);
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("注册热键{0}失败！错误代码：{1}", string.IsNullOrEmpty(strHotKeys) ? "" : ("<" + strHotKeys + ">"), errorCode));
+                    Win32API.MessageBoxA(IntPtr.Zero, string.Format("注册热键{0}失败！错误代码：{1}", string.IsNullOrEmpty(strHotKeys) ? "" : ("<" + strHotKeys + ">"), errorCode), "热键未生效！", 0x41030);
                 }
                 return false;
             }

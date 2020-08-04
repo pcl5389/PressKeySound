@@ -1,3 +1,5 @@
 D:\Projects\Beat\Beat\bin\Release\Beat.exe
 D:\Projects\Beat\Beat\obj\Release\Beat.csproj.CoreCompileInputs.cache
 D:\Projects\Beat\Beat\obj\Release\Beat.exe
+D:\Projects\Beat\Beat\obj\Release\Beat.FrmMain.resources
+D:\Projects\Beat\Beat\obj\Release\Beat.csproj.GenerateResource.cache

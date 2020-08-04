@@ -1,12 +1,8 @@
-﻿using System.Text;
-
-namespace Beat.lib
+﻿namespace Beat.lib
 {
     class IniFile
     {
-        //文件INI名称 
         string Path;
-        //类的构造函数，传递INI文件名 
         public IniFile(string inipath)
         {
             Path = inipath;
@@ -21,7 +17,7 @@ namespace Beat.lib
         //读取INI文件指定 
         public string IniReadValue(string Section, string Key)
         {
-            StringBuilder temp = new StringBuilder(255);
+            System.Text.StringBuilder temp = new System.Text.StringBuilder(255);
             Win32API.GetPrivateProfileString(Section, Key, "", temp, 255, Path);
             return temp.ToString();
         }

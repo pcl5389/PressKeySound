@@ -5,3 +5,4 @@ D:\Projects\Beat\Beat\obj\Debug\Beat.csproj.CoreCompileInputs.cache
 D:\Projects\Beat\Beat\obj\Debug\Beat.exe
 D:\Projects\Beat\Beat\obj\Debug\Beat.pdb
 D:\Projects\Beat\Beat\obj\Debug\Beat.frmMain.resources
+D:\Projects\Beat\Beat\obj\Debug\Beat.csprojAssemblyReference.cache

@@ -63,9 +63,13 @@
             // tbHotKey1
             // 
             this.tbHotKey1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbHotKey1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbHotKey1.CausesValidation = false;
             this.tbHotKey1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbHotKey1.Location = new System.Drawing.Point(10, 38);
+            this.tbHotKey1.MaxLength = 250;
             this.tbHotKey1.Name = "tbHotKey1";
+            this.tbHotKey1.ShortcutsEnabled = false;
             this.tbHotKey1.Size = new System.Drawing.Size(130, 26);
             this.tbHotKey1.TabIndex = 1;
             this.tbHotKey1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -77,9 +81,13 @@
             // tbWavPath1
             // 
             this.tbWavPath1.BackColor = System.Drawing.SystemColors.Info;
+            this.tbWavPath1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbWavPath1.CausesValidation = false;
             this.tbWavPath1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbWavPath1.Location = new System.Drawing.Point(146, 38);
+            this.tbWavPath1.MaxLength = 250;
             this.tbWavPath1.Name = "tbWavPath1";
+            this.tbWavPath1.ShortcutsEnabled = false;
             this.tbWavPath1.Size = new System.Drawing.Size(330, 26);
             this.tbWavPath1.TabIndex = 2;
             this.tbWavPath1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbWavPath1_KeyDown);
@@ -89,9 +97,13 @@
             // tbWavPath2
             // 
             this.tbWavPath2.BackColor = System.Drawing.SystemColors.Info;
+            this.tbWavPath2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbWavPath2.CausesValidation = false;
             this.tbWavPath2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbWavPath2.Location = new System.Drawing.Point(146, 66);
+            this.tbWavPath2.MaxLength = 250;
             this.tbWavPath2.Name = "tbWavPath2";
+            this.tbWavPath2.ShortcutsEnabled = false;
             this.tbWavPath2.Size = new System.Drawing.Size(330, 26);
             this.tbWavPath2.TabIndex = 4;
             this.tbWavPath2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbWavPath1_KeyDown);
@@ -101,9 +113,13 @@
             // tbHotKey2
             // 
             this.tbHotKey2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbHotKey2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbHotKey2.CausesValidation = false;
             this.tbHotKey2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbHotKey2.Location = new System.Drawing.Point(10, 66);
+            this.tbHotKey2.MaxLength = 250;
             this.tbHotKey2.Name = "tbHotKey2";
+            this.tbHotKey2.ShortcutsEnabled = false;
             this.tbHotKey2.Size = new System.Drawing.Size(130, 26);
             this.tbHotKey2.TabIndex = 3;
             this.tbHotKey2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -134,9 +150,13 @@
             // tbWavPath4
             // 
             this.tbWavPath4.BackColor = System.Drawing.SystemColors.Info;
+            this.tbWavPath4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbWavPath4.CausesValidation = false;
             this.tbWavPath4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbWavPath4.Location = new System.Drawing.Point(146, 126);
+            this.tbWavPath4.MaxLength = 250;
             this.tbWavPath4.Name = "tbWavPath4";
+            this.tbWavPath4.ShortcutsEnabled = false;
             this.tbWavPath4.Size = new System.Drawing.Size(330, 26);
             this.tbWavPath4.TabIndex = 8;
             this.tbWavPath4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbWavPath1_KeyDown);
@@ -146,9 +166,13 @@
             // tbHotKey4
             // 
             this.tbHotKey4.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbHotKey4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbHotKey4.CausesValidation = false;
             this.tbHotKey4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbHotKey4.Location = new System.Drawing.Point(10, 126);
+            this.tbHotKey4.MaxLength = 250;
             this.tbHotKey4.Name = "tbHotKey4";
+            this.tbHotKey4.ShortcutsEnabled = false;
             this.tbHotKey4.Size = new System.Drawing.Size(130, 26);
             this.tbHotKey4.TabIndex = 7;
             this.tbHotKey4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -159,9 +183,13 @@
             // tbWavPath3
             // 
             this.tbWavPath3.BackColor = System.Drawing.SystemColors.Info;
+            this.tbWavPath3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbWavPath3.CausesValidation = false;
             this.tbWavPath3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbWavPath3.Location = new System.Drawing.Point(146, 98);
+            this.tbWavPath3.MaxLength = 250;
             this.tbWavPath3.Name = "tbWavPath3";
+            this.tbWavPath3.ShortcutsEnabled = false;
             this.tbWavPath3.Size = new System.Drawing.Size(330, 26);
             this.tbWavPath3.TabIndex = 6;
             this.tbWavPath3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbWavPath1_KeyDown);
@@ -171,9 +199,13 @@
             // tbHotKey3
             // 
             this.tbHotKey3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbHotKey3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbHotKey3.CausesValidation = false;
             this.tbHotKey3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbHotKey3.Location = new System.Drawing.Point(10, 98);
+            this.tbHotKey3.MaxLength = 250;
             this.tbHotKey3.Name = "tbHotKey3";
+            this.tbHotKey3.ShortcutsEnabled = false;
             this.tbHotKey3.Size = new System.Drawing.Size(130, 26);
             this.tbHotKey3.TabIndex = 5;
             this.tbHotKey3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -184,9 +216,13 @@
             // tbWavPath6
             // 
             this.tbWavPath6.BackColor = System.Drawing.SystemColors.Info;
+            this.tbWavPath6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbWavPath6.CausesValidation = false;
             this.tbWavPath6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbWavPath6.Location = new System.Drawing.Point(146, 186);
+            this.tbWavPath6.MaxLength = 250;
             this.tbWavPath6.Name = "tbWavPath6";
+            this.tbWavPath6.ShortcutsEnabled = false;
             this.tbWavPath6.Size = new System.Drawing.Size(330, 26);
             this.tbWavPath6.TabIndex = 12;
             this.tbWavPath6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbWavPath1_KeyDown);
@@ -196,9 +232,13 @@
             // tbHotKey6
             // 
             this.tbHotKey6.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbHotKey6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbHotKey6.CausesValidation = false;
             this.tbHotKey6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbHotKey6.Location = new System.Drawing.Point(10, 186);
+            this.tbHotKey6.MaxLength = 250;
             this.tbHotKey6.Name = "tbHotKey6";
+            this.tbHotKey6.ShortcutsEnabled = false;
             this.tbHotKey6.Size = new System.Drawing.Size(130, 26);
             this.tbHotKey6.TabIndex = 11;
             this.tbHotKey6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -209,9 +249,13 @@
             // tbWavPath5
             // 
             this.tbWavPath5.BackColor = System.Drawing.SystemColors.Info;
+            this.tbWavPath5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbWavPath5.CausesValidation = false;
             this.tbWavPath5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbWavPath5.Location = new System.Drawing.Point(146, 158);
+            this.tbWavPath5.MaxLength = 250;
             this.tbWavPath5.Name = "tbWavPath5";
+            this.tbWavPath5.ShortcutsEnabled = false;
             this.tbWavPath5.Size = new System.Drawing.Size(330, 26);
             this.tbWavPath5.TabIndex = 10;
             this.tbWavPath5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbWavPath1_KeyDown);
@@ -221,9 +265,13 @@
             // tbHotKey5
             // 
             this.tbHotKey5.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbHotKey5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbHotKey5.CausesValidation = false;
             this.tbHotKey5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbHotKey5.Location = new System.Drawing.Point(10, 158);
+            this.tbHotKey5.MaxLength = 250;
             this.tbHotKey5.Name = "tbHotKey5";
+            this.tbHotKey5.ShortcutsEnabled = false;
             this.tbHotKey5.Size = new System.Drawing.Size(130, 26);
             this.tbHotKey5.TabIndex = 9;
             this.tbHotKey5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -302,7 +350,7 @@
             this.Deactivate += new System.EventHandler(this.frmMain_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Shown += new System.EventHandler(this.frmMain_Shown);
+            this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

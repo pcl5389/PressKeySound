@@ -1,27 +1,18 @@
-﻿using System.ComponentModel;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.IO;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace Beat.lib
 {
-    [RunInstaller(true)]
-    class NgenInstaller// : System.Configuration.Install.Installer
+    class NgenInstaller
     {
         public enum InstallTypes
         {
             Install,
             Uninstall
         }
-
-        public void NgenFile(InstallTypes options)
+        public void NgenFile(InstallTypes options, string exePath)
         {
-            string envDir = RuntimeEnvironment.GetRuntimeDirectory();
-            string ngenPath = Path.Combine(envDir, "ngen.exe");
-            string exePath = Application.ExecutablePath;
-            string argument = (options == InstallTypes.Install ? "install" : "uninstall") + " \"" + exePath + "\"";
-
             Process ngenProcess = new Process();
            
             // 关闭Shell的使用
@@ -40,11 +31,10 @@ namespace Beat.lib
             // 设置不显示窗口
             ngenProcess.StartInfo.CreateNoWindow = true;
 
-            ngenProcess.StartInfo.FileName = ngenPath;
-            ngenProcess.StartInfo.Arguments = argument;
+            ngenProcess.StartInfo.FileName = Path.Combine(RuntimeEnvironment.GetRuntimeDirectory(), "ngen.exe");
+            ngenProcess.StartInfo.Arguments = (options == InstallTypes.Install ? "install" : "uninstall") + " \"" + exePath + "\"";
             ngenProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             ngenProcess.Start();
-
 
             // 从输出流获取命令执行结果
             //string strRst = ngenProcess.StandardOutput.ReadToEnd();

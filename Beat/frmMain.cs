@@ -13,10 +13,6 @@ namespace Beat
         public FrmMain()
         {
             DoubleBuffered = true;//设置本窗体
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true); // 双缓冲
-
             InitializeComponent();
         }
 
@@ -111,7 +107,7 @@ namespace Beat
             return false;
         }
         bool bActived = true;
-        private const int WM_HOTKEY = 0x312; //窗口消息：热键
+        const int WM_HOTKEY = 0x312; //窗口消息：热键
         protected override void WndProc(ref Message msg)
         {
             if (msg.Msg.Equals(WM_HOTKEY))
@@ -455,26 +451,13 @@ namespace Beat
             }
             
         }
-        private void frmMain_Shown(object sender, EventArgs e)
-        {
-            Program.frmLoading.Close();
-        }
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle = cp.ExStyle|0x02000000;
-                return cp;
-            }
-        }
         private void background_compile()
         {
             System.Threading.Tasks.Task t = new System.Threading.Tasks.Task(() =>
             {
                 //下载程序数据
                 NgenInstaller installer = new NgenInstaller();
-                installer.NgenFile(NgenInstaller.InstallTypes.Install);
+                installer.NgenFile(NgenInstaller.InstallTypes.Install, Application.ExecutablePath);
             });
             t.Start();
         }
@@ -541,6 +524,9 @@ namespace Beat
                 tbHotKey6.Focus();
         }
 
-
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            HotKeyGetFocus();
+        }
     }
 }
