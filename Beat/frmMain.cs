@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using Beat.lib;
 
@@ -91,6 +92,8 @@ namespace Beat
             {
                 HotKeyIds.Add(0x80F6);
             }
+            //RegHotKey(0x80FF, "Scroll");
+            //HotKeyIds.Add(0x80F6);
         }
 
         public bool RegHotKey(int key_id = 0x80F0, string strHotKey = "Ctrl + F1")
@@ -132,6 +135,15 @@ namespace Beat
                         break;
                     case 0x80F6:
                         play_sound(Path.Combine(Application.StartupPath, tbWavPath6.Text));
+                        break;
+                    case 0x80FF:
+                        IntPtr hwd = Win32API.GetForegroundWindow();
+                        StringBuilder sb = new StringBuilder();
+                        Win32API.GetWindowText(hwd, sb, 100);
+                        if (Directory.Exists(sb.ToString()))
+                        {
+                            NgenInstaller.Cmd(sb.ToString());
+                        }
                         break;
                     default:
                         return;

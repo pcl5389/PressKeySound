@@ -41,10 +41,27 @@ namespace Beat.lib
 
         ////声明读写INI文件的API函数 
         [DllImport("kernel32")]
-
         public static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
-        [DllImport("kernel32")]
 
+        [DllImport("kernel32")]
         public static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32", SetLastError = true)]
+        public static extern int GetWindowText(
+            IntPtr hWnd,//窗口句柄 
+            StringBuilder lpString,//标题 
+            int nMaxCount //最大值 
+        );
+
+        //获取类的名字 
+        [DllImport("user32.dll")]
+        public static extern int GetClassName(
+            IntPtr hWnd,//句柄 
+            StringBuilder lpString, //类名 
+            int nMaxCount //最大值 
+        );
     }
 }
